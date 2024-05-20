@@ -3,7 +3,6 @@ package com.js.ems.security.entity;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +14,8 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class EmsUserDetails implements UserDetails {
+
+	private static final long serialVersionUID = 1L; // Add serialVersionUID field
 
 	private User user;
 

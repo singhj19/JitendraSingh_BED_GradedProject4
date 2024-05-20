@@ -3,47 +3,54 @@ package com.js.ems.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
-
 import com.js.ems.entity.Employee;
-import com.js.ems.repository.EmployeeRepository;
 
-@Service
-public class EmployeeService {
-	
-	@Autowired
-	EmployeeRepository employeeRepository;
+public interface EmployeeService {
 
-	public List<Employee> sortedList(String order) {
-		
-		Sort.Direction direction = "desc".equalsIgnoreCase(order) ? Sort.Direction.DESC : Sort.Direction.ASC;
-        return employeeRepository.findAll(Sort.by(direction, "firstName"));
-	}
+	/**
+	 * Retrieves a sorted list of employees based on the order specified.
+	 *
+	 * @param order the sort order (asc or desc)
+	 * @return a sorted list of employees
+	 */
+	List<Employee> sortedList(String order);
 
-	public void save(Employee employee) {
-		employeeRepository.save(employee);		
-	}
+	/**
+	 * Saves an employee to the repository.
+	 *
+	 * @param employee the employee to be saved
+	 */
+	void save(Employee employee);
 
-	public Optional<Employee> getEmployee(int id) {
-		// TODO Auto-generated method stub
-		return employeeRepository.findById(id);
-	}
+	/**
+	 * Retrieves an employee by their ID.
+	 *
+	 * @param id the ID of the employee
+	 * @return an Optional containing the employee if found, or empty if not found
+	 */
 
-	public void deleteEmployee(int id) {
-		// TODO Auto-generated method stub
-		employeeRepository.deleteById(id);
-	}
+	Optional<Employee> getEmployee(int id);
 
-	public List<Employee> search(String firstName) {
-		// TODO Auto-generated method stub
-		return employeeRepository.findAllByfirstName(firstName);
-	}
+	/**
+	 * Deletes an employee by their ID.
+	 *
+	 * @param id the ID of the employee to be deleted
+	 */
+	void deleteEmployee(int id);
 
-	public List<Employee> list() {
-		// TODO Auto-generated method stub
-		return employeeRepository.findAll();
-	}
+	/**
+	 * Searches for employees by their first name.
+	 *
+	 * @param firstName the first name to search for
+	 * @return a list of employees matching the search criteria
+	 */
+	List<Employee> search(String firstName);
+
+	/**
+	 * Retrieves a list of all employees.
+	 *
+	 * @return a list of all employees
+	 */
+	List<Employee> list();
 
 }

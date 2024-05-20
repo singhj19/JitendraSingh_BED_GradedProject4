@@ -1,14 +1,19 @@
 package com.js.ems.repository;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.js.ems.entity.Employee;
+import java.util.Optional;
 import com.js.ems.entity.User;
 
-public interface UserRepository extends JpaRepository<User,Integer>{
+/**
+ * Repository interface for User entity.
+ */
+public interface UserRepository extends JpaRepository<User, Integer> {
 
-	User getUserByUsername(String username);	
-	
+	/**
+	 * Retrieves a user by their username.
+	 *
+	 * @param username the username of the user
+	 * @return an Optional containing the user if found, or empty if not found
+	 */
+	Optional<User> findByUsername(String username);
 }
